@@ -24,7 +24,7 @@ function App() {
             const formData = new FormData()
             formData.append("content", content)
 
-            const response = await fetch("http://127.0.0.1:5000/copy", {
+            const response = await fetch("https://clippo-r9as.onrender.com/copy", {
                 method: "POST",
                 body: formData
             })
@@ -50,7 +50,7 @@ function App() {
         setPastedContent("")
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/paste/${pasteToken}`)
+            const response = await fetch(`https://clippo-r9as.onrender.com/paste/${pasteToken}`)
 
             if (!response.ok) {
                 const data = await response.json()
