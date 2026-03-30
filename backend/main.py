@@ -2,6 +2,9 @@ from flask import request, jsonify
 from config import app, db
 from models import ClipboardEntry
 
+with app.app_context():
+    db.create_all()
+
 @app.route("/copy", methods=['POST'])
 def copy():
     content = request.form.get("content")
@@ -21,9 +24,6 @@ def copy():
 def paste(token):
     entry = ClipboardEntry.query.filter_by(token=token).first_or_404()
     return jsonify({"content": entry.content})
-
-with app.app_context():
-    db.create_all()
 
 if __name__ == "__main__":
     app.run(debug=True)
